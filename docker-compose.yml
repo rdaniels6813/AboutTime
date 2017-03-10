@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  abouttime:
+    image: abouttime
+    build:
+      context: ./AboutTime
+      dockerfile: Dockerfile
