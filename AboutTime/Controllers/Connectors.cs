@@ -1,42 +1,45 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using AboutTime.Interfaces;
+using AboutTime.Models;
+using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AboutTime.Controllers
 {
     [Route("api/[controller]")]
-    public class TimeCard : Controller
+    public class Connectors : Controller
     {
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<IConnector> Get()
         {
-            return new string[] { "TimeCard1", "TimeCard2" };
+            return new IConnector[] { new Connector() };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IConnector Get(Guid id)
         {
-            return "value";
+            return new Connector();
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]IConnector value)
         {
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(Guid id, [FromBody]IConnector value)
         {
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
         }
     }
