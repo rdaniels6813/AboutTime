@@ -1,4 +1,5 @@
-﻿using AboutTime.Models;
+﻿using AboutTime.Extensions;
+using AboutTime.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,14 +48,6 @@ namespace AboutTime
                 options.IncludeXmlComments(filePath);
                 options.DescribeAllEnumsAsStrings();
             });
-
-            //services.AddScoped<ISearchProvider, SearchProvider>();
-            // Add framework services.
-            //services.AddMvc();
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new Info { Title = "AboutTime API", Version = "v1" });
-            //});
             services.AddEntityFrameworkSqlite().AddDbContext<ATContext>();
         }
 
@@ -92,6 +85,8 @@ namespace AboutTime
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
             });
+
+            app.EnsureMigrationOfContext<ATContext>();
         }
     }
 }
